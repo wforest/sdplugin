@@ -6,7 +6,7 @@
 
 /*
 Plugin Name: SD Plug-in
-Plugin URI:
+Plugin URI: https://github.com/wforest/sdplugin
 Description: A brief description of the Plugin.
 Version: 0.1.0
 Author: Bill Sullivan
@@ -32,3 +32,38 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with SD Plug-in. If not, see {URI to Plugin License}.
 */
+
+
+/**
+ * Activate Plug-in
+ */
+function sdplugin_setup_post_types()
+{
+    // register the "book" custom post type
+    register_post_type( 'book', ['public' => 'true'] );
+}
+add_action( 'init', 'sdplugin_setup_post_type' );
+
+function sdplugin_install()
+{
+    // trigger our function that registers the custom post type
+    sdplugin_setup_post_type();
+
+    // clear the permalinks after the post type has been registered
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'sdplugin_install' );
+
+
+
+/**
+ * Deactivate Plug-in
+ */
+function sdplugin_deactivation()
+{
+    // our post type will be automatically removed, so no need to unregister it
+
+    // clear the permalinks to remove our post type's rules
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'sdplugin_deactivation' );
