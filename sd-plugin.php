@@ -319,7 +319,7 @@ function testimonial_post_type() {
         'has_archive'           => true,
         'hierarchical'          => false,
         'menu_position'         => null,
-        'menu_icon'             => 'dashicons-groups',
+        'menu_icon'             => 'dashicons-thumbs-up',
         'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
     );
 
