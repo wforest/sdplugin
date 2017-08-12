@@ -346,3 +346,32 @@ function create_spec_status_tax() {
     ) );
 }
 add_action( 'init', 'create_spec_status_tax', 0 );
+
+/**
+ * Register a 'Customer Type' taxonomy for post type 'customer'
+ *
+ * @see register_post_type for registering post types.
+ */
+function create_customer_type_tax() {
+    register_taxonomy( 'customer type', 'customer', array(
+        'label'         => __( 'Customer Type', 'sdplugin' ),
+        'rewrite'       => array( 'slug' => 'customers/customer_type' ),
+        'hierarchical'  => true,
+    ) );
+}
+add_action( 'init', 'create_customer_type_tax', 0 );
+
+/**
+ * Register a 'Customer Interests' taxonomy for post type 'customer'
+ *
+ * @see register_post_type for registering post types.
+ */
+function create_customer_interests_tax() {
+
+    register_taxonomy( 'customer interests', 'customer', array(
+        'label'         => __( 'Customer Interest', 'sdplugin' ),
+        'rewrite'       => array( 'slug' => 'customers/customer_interests' ),
+        'hierarchical'  => false,
+    ) );
+}
+add_action( 'init', 'create_customer_interests_tax', 0 );
