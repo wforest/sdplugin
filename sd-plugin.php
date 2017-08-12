@@ -275,6 +275,59 @@ function customer_post_type() {
 add_action( 'init', 'customer_post_type');
 
 /**
+ * Register a custom post type called "testimonial"
+ *
+ * @see get_post_type_labels() for label keys
+ */
+function testimonial_post_type() {
+    $labels = array(
+        'name'                  => _x( 'Testimonials', 'Post type general name', 'sdplugin' ),
+        'singular_name'         => _x( 'Testimonial', 'Post type singular name', 'sdplugin' ),
+        'menu_name'             => _x( 'Testimonials', 'Admin Menu text', 'sdplugin' ),
+        'name_admin_bar'        => _x( 'Testimonial', 'Add New on Toolbar', 'sdplugin' ),
+        'add_new'               => __( 'Add New', 'sdplugin' ),
+        'add_new_item'          => __( 'Add New Testimonial', 'sdplugin' ),
+        'new_item'              => __( 'New Testimonial', 'sdplugin' ),
+        'edit_item'             => __( 'Edit Testimonial', 'sdplugin' ),
+        'view_item'             => __( 'View Testimonial', 'sdplugin' ),
+        'all_items'             => __( 'All Testimonials', 'sdplugin' ),
+        'search_items'          => __( 'Search Testimonials', 'sdplugin' ),
+        'parent_item_colon'     => __( 'Parent Testimonials:', 'sdplugin' ),
+        'not_found'             => __( 'No testimonials found.', 'sdplugin' ),
+        'not_found_in_trash'    => __( 'No testimonials found in Trash.', 'sdplugin' ),
+        'featured_image'        => _x( 'Testimonial Image', 'sdplugin' ),
+        'set_featured_image'    => _x( 'Set testimonial image', 'sdplugin' ),
+        'remove_featured_image' => _x( 'Remove testimonial image', 'sdplugin' ),
+        'use_featured_image'    => _x( 'Use as testimonial image', 'sdplugin' ),
+        'archives'              => _x( 'Testimonials archives', 'sdplugin' ),
+        'insert_into_item'      => _x( 'Insert into testimonial', 'sdplugin' ),
+        'uploaded_to_this_item' => _x( 'Uploaded to this testimonials', 'sdplugin' ),
+        'filter_items_list'     => _x( 'Filter testimonials list', 'sdplugin' ),
+        'items_list_navigation' => _x( 'Testimonials list navigation', 'sdplugin' ),
+        'items_list'            => _x( 'Testimonials list', 'sdplugin' ),
+    );
+
+    $args = array(
+        'labels'                => $labels,
+        'public'                => true,
+        'publicly_queryable'    => true,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'query_var'             => true,
+        'rewrite'               => array( 'slug' => 'testimonial' ),
+        'capability_type'       => 'post',
+        'has_archive'           => true,
+        'hierarchical'          => false,
+        'menu_position'         => null,
+        'menu_icon'             => 'dashicons-groups',
+        'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' ),
+    );
+
+    register_post_type( 'testimonial', $args );
+}
+add_action( 'init', 'testimonial_post_type');
+
+/**
  * Register a 'Product Type' taxonomy for post type 'location'
  *
  * @see register_post_type for registering post types.
